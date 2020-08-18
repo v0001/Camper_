@@ -1,0 +1,90 @@
+.container{
+    padding-bottom:10rem;
+    border:10px solid #777;
+    background-color:white;
+    color:black;
+}
+
+section{
+    position:relative;
+    margin-bottom:10rem;
+    width:80%;
+}
+.dt_title{
+    font-size:2.5rem;
+    
+    padding-bottom:1rem;
+    margin-bottom:2rem;
+}
+.dt_title span {
+    font-size:1.5rem;
+}
+
+.dt_desc{
+    display:inline-block;
+    padding-bottom:1rem;
+    border-bottom:1.5px solid black;
+    line-height:1.5;
+}
+
+.dt_create_at{
+    position:absolute;
+    bottom: -5rem;
+    left:0;
+}
+.update_btn{
+    position:absolute;
+    bottom: -5rem;
+    right:0;
+}
+
+form{
+    width:80%;
+}
+.com_label{
+    font-size:2.0rem;
+    margin-bottom:2rem;
+}
+
+.com_input_container{
+    width:100%;
+    display:Flex;
+    margin-bottom:2rem;
+}
+
+.com_input_container input{
+    flex:1;
+    padding:1rem 1.5rem;
+}
+.com_input_container .com_submit{
+    border:none;
+    flex:unset;
+    width:10%;
+    background-color:black;
+    color:white;
+    cursor:pointer;
+    
+}
+.com_row{
+    border-bottom:2px solid #777;
+    width:80%;
+    display:flex;
+    flex-direction:column;
+    box-sizing:border-box;
+    padding:1rem;
+}
+.com_desc{
+    flex:1;
+    font-size:1.6rem;
+}
+.com_author a{
+    color:#777;
+    font-size:1.2rem;
+    margin-left:3rem;
+    font-weight:bold;
+}
+.com_author{
+    font-weight:bold;
+    font-size:1.6rem;
+    margin-bottom:1.5rem;
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/write.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+
+<form class="write_form" method="POST" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+    
+    {% for field in write_form %}
+    {% if field.label == "title" %}
+    {%endif%}
+    <div class="row">
+        <div class="fd_label">
+            {{field.label}} :
+        </div>
+        <div class="field">
+            {{field}}
+        </div>
+    </div>
+    {%endfor%}
+    
+    
+   
+    
+<button class="write_btn" type="submit">작성</button>
+</form>
+
+
+{%endblock%}

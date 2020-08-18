@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+
+<section>
+    
+<div class="dt_title">
+    제목 : {{detail_post.title}} <span>- by {{detail_post.author}}</span>
+
+</div>
+
+<div class="dt_desc">
+    {% autoescape off %}
+
+
+    {{detail_post.desc}}
+{% endautoescape %}
+</div>
+
+<div class="dt_create_at">
+    {{detail_post.create_at}}
+
+</div>
+
+
+{% if detail_post.author == user %}
+<div class="update_btn">
+    <a href="{% url 'update' detail_post.id %}">수정</a> |
+<a href="{% url 'delete' detail_post.id%}">삭제</a>
+</div>
+{% endif %}
+
+</section>
+
+<form method="post" action="{% url 'create_comment' detail_post.id  %}">
+    {% csrf_token %}
+    <div class="com_label">{{comment_form.desc.label}}</div>
+    <div class="com_input_container">
+        {{comment_form.desc}}
+    
+        <input class="com_submit" type="submit" value="작성"/>
+    
+    </div>
+</form>
+
+<!--<form method="post" action="{% url 'create_comment' detail_post.id  %}">-->
+<!--    {% csrf_token %}-->
+<!--    {% for form in comment_form %}-->
+    
+<!--        {% if form.label != "Post" %}-->
+        
+<!--            {{form.label}}: {{form}}<br>-->
+            
+<!--        {%endif%}-->
+        
+<!--    {%endfor%}-->
+<!--    <input type='hidden' name="post" value={{detail_post.id}}>-->
+    <!--{{comment_form.as_p}}-->
+<!--    <input type="submit" value="작성"/>-->
+<!--</form>-->
+
+{% for com in comment_all%}
+<div class="com_row">
+       <span class="com_author">{{com.author}}
+       
+        {% if com.author == user %}
+            <a href="{% url 'comment_delete' detail_post.id com.id %}">삭제</a>
+        {%endif%}
+        
+        </span> 
+
+       <div class="com_desc">{{com}} 
+      
+        </div> 
+       
+        
+           
+
+</div>
+    
+   
+    
+   
+    <br> 
+{%endfor%}
+
+
+
+</div>
+{%endblock%}

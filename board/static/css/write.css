@@ -1,0 +1,48 @@
+
+.mytitle{
+    border:none;
+    background: none;
+    border: 1px solid #777;
+    padding:1rem;
+    border-radius: 4px;
+    width:100%;
+    
+}
+.mydesc{
+    width:100%;
+
+    resize:none;
+    padding:10px;
+    border: 2px solid #777;
+}
+
+.fd_label{
+    font-weight:bold;
+    font-size:1.6rem;
+    margin-bottom:1.5rem;
+}
+.write_form{
+    
+width:70%;
+margin:0 auto;
+margin-top:10rem;
+}
+.row{
+    margin: 20px;
+}
+
+.write_btn{
+    float:right;
+    padding:1rem 2rem;
+    border:none;
+    background-color:black;
+    color:white;
+    margin-right:1.5rem;
+    border-radius:0.5rem;
+    
+    margin-bottom:5rem;
+}
+
+.summernote-div iframe{
+    width:100%;
+}
