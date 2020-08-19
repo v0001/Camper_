@@ -1,3 +1,4 @@
 {
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "yapf",
+    "python.pythonPath": "C:\\Program Files\\Python37\\python.exe"
 }

@@ -1,9 +1,8 @@
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
 from .models import Profile
+
 
 class UserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
@@ -18,9 +17,17 @@ class UserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
-        
+
 
 class ProfileForm(forms.ModelForm):
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['desc'].widget.attrs.update(
+    #         {'autocomplete': 'off',
+    #         'placeholder':'댓글을 입력해주세요,'
+    #         })
+
     class Meta:
         model = Profile
-        fields = ( "nickname", "location", "age")
+        fields = ("nickname", "location", "age")

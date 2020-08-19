@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>profile</h1>
+
+    닉네임 : {{pro_info.profile.nickname}}<br>
+    지역 : {{pro_info.profile.location}}<br>
+    나이 : {{pro_info.profile.age}}<br>
+    
+    
+    
+    <!--좋아요 부분 불러오기-->
+    {% for i in pro_info.liked_posts.all %}
+        <div>
+            <a href = "{% url 'detail' i.id %}">{{i.title}}</a>
+        </div>
+    {%endfor%}
+    
+{%endblock%}
