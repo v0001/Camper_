@@ -16,6 +16,11 @@ def signup(request):
         save_form = UserCreationForm(request.POST)
         profile_form = ProfileForm(request.POST)
 
+        print('save_form',save_form)
+        
+        print('profile_form',profile_form)
+        
+
         if save_form.is_valid() and profile_form.is_valid():
             save_form.save()
 
@@ -39,7 +44,7 @@ def signup(request):
         else:
 
             context['user_form'] = save_form
-            return render(request, 'signup.html', context)
+            return render(request, 'registration/signup.html', context)
     else:
         user_form = UserCreationForm()
         context['user_form'] = user_form
