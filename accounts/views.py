@@ -5,6 +5,7 @@ from .forms import UserCreationForm, ProfileForm
 from .models import Profile
 from django.contrib.auth.models import User
 
+
 # Create your views here.
 
 
@@ -58,4 +59,8 @@ def profile(request, pk):
     pro_info = User.objects.get(id=pk)
     context['pro_info'] = pro_info
     return render(request, 'profile.html', context)
+
+
+def login(request):
+    return render(request,"login.html")
     
