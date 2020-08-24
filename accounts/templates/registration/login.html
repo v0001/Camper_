@@ -1,26 +1,30 @@
-
-{% extends 'base.html' %}
+{% extends 'header.html' %}
 {% load socialaccount %}
-
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css" />
+{% endblock %}
 
 {% block content %}
-<h1>로그인</h1>
+<div class = "login_page">
+    <br><br><br>
+    <h1>LOGIN</h1><br>
 
-<form method="POST">
-    
-    {% csrf_token %}
-    {{form.as_p}}
-<button type="submit">로그인</button>
-</form>
-<div class = "social_login">
-						
-	<a href = "{% provider_login_url 'naver' %}" alt="NAVER LOGIN" title="NAVER LOGIN">
-    <img src = "C:\GitHub\Camper_\basestatic\img\social_login\Log in with NAVER_Official_Green.PNG" alt="NAVER"></a>
-    <a href = "{% provider_login_url 'kakao' %}">kakao</a>
-    <img src = "C:\GitHub\Camper_\basestatic\img\social_login\kakao_login_medium_narrow.png" alt="KAKAO" title="KAKAO LOGIN"></a>
-    <a href = "{% provider_login_url 'google' %}">
-    <img src = "C:\GitHub\Camper_\basestatic\img\social_login\btn_google_signin_light_normal_web.png" alt="GOOGLE" title="GOOGLE LOGIN"></a>
+    <form method="POST">
+        
+        {% csrf_token %}
+        {{form.as_p}}
+    <br><button type="submit">GO!</button><br><br>
+    </form>
+    <div class = "social_login">
+        <h2>social login</h2>                    
+        <a href = "{% provider_login_url 'naver' %}" alt="NAVER LOGIN" title="NAVER LOGIN">
+        <img src = "accounts\templates\img\social_login\Log in with NAVER_Official_Green.PNG" alt="NAVER"></a><br>
+        <a href = "{% provider_login_url 'kakao' %}">
+        <img src = "accounts\templates\img\social_login\kakao_login_medium_narrow.png" alt="KAKAO" title="KAKAO LOGIN"></a><br>
+        <a href = "{% provider_login_url 'google' %}">
+        <img src = "accounts\templates\img\social_login\btn_google_signin_dark_normal_web.png" alt="GOOGLE" title="GOOGLE LOGIN"></a>
 
+    </div>
 </div>
-
 {%endblock%}

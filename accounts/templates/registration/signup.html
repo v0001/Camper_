@@ -1,6 +1,9 @@
 {% extends 'header.html' %}
 {% load socialaccount %}
-
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" type="text/css" />
+{% endblock %}
 
 
 {% block content %}
@@ -14,7 +17,7 @@
             <div class="section-top-border">
 				<div class="row">
 					<div class="col-lg-8 col-md-8">
-						<h3 class="mb-30">회원가입</h3>
+						<h3 class="mb-30">SIGN UP</h3>
 
 							<div class="mt-10">
 								<input type="email" name="email" placeholder="EMAIL" onfocus="this.placeholder = ''"
