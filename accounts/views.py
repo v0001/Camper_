@@ -5,8 +5,12 @@ from .forms import UserCreationForm, ProfileForm
 from .models import mypage
 from django.contrib.auth.models import User
 
-
 # Create your views here.
+
+
+# def index(request):
+#     context = {}
+#     return render(request, 'index.html', context)
 
 
 def signup(request):
@@ -17,10 +21,9 @@ def signup(request):
         save_form = UserCreationForm(request.POST)
         profile_form = ProfileForm(request.POST)
 
-        print('save_form',save_form)
-        
-        print('profile_form',profile_form)
-        
+        print('save_form', save_form)
+
+        print('profile_form', profile_form)
 
         if save_form.is_valid() and profile_form.is_valid():
             save_form.save()
@@ -29,7 +32,7 @@ def signup(request):
             user = authenticate(username=save_form.cleaned_data['username'],
                                 password=save_form.cleaned_data['password1'])
 
-            login(request, user)
+            # login(request, user)
 
             get_profile = mypage.objects.get(id=user.mypage.id)
 
@@ -62,5 +65,4 @@ def mypage(request, mp):
 
 
 def login(request):
-    return render(request,"login.html")
-    
+    return render(request, "login.html")

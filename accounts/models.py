@@ -10,6 +10,9 @@ from django.dispatch import receiver
 class mypage(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
+    name = models.CharField('이름', max_length=20, blank=True, null=True)
+    select = [(1,'남'),(2,'여')]
+    sex = models.BooleanField(choices=select, default=1, blank=False)
     nickname = models.CharField('닉네임', max_length=20, blank=True, null=True)
     #blacktrue->빈칸입력가능 nulltrue -> 데이터의공백 빈칸입력불가
 

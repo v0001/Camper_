@@ -1,21 +1,32 @@
-{% extends 'base.html' %}
-
-
+{% extends 'header.html' %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css" />
+{% endblock %}
 {% block content %}
 <h1>MYPAGE</h1>
+    {% csrf_token %}
+    <h2>{% url 'detail' user.id %}님의 상세정보</h2>
 
-    닉네임 : {{pro_info.mypage.nickname}}<br>
-    지역 : {{pro_info.mypage.location}}<br>
-    나이 : {{pro_info.mypage.age}}<br>
-    
-    
+    <div class="profile_list">
+        <ul>
+            <li>이름  : {{my_info.mypage.name}}</li><br>
+            <li>성별 : {{my_info.mypage.sex}}</li><br>
+            <li>닉네임 : {{my_info.mypage.nickname}}</li><br>
+            <li>지역 : {{my_info.mypage.location}}</li><br>
+            <li>연령 : {{my_info.mypage.age}}</li><br>
+        </ul>
+    </div>
+
     
     
     <!--좋아요 부분 불러오기-->
+
+    <h2>{% url 'detail' user.id %}님의 좋아요 list</h2>
     {% for i in pro_info.liked_posts.all %}
-        <div>
+        <div class="likedpost">
             <a href = "{% url 'detail' i.id %}">{{i.title}}</a>
-        </div>
+        </h2>
     {%endfor%}
-    
+
 {%endblock%}

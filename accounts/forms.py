@@ -30,4 +30,4 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = mypage
-        fields = ("nickname", "location", "age")
+        fields = ("name", "sex", "nickname", "location", "age")
