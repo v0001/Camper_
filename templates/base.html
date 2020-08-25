@@ -20,7 +20,7 @@
         
     
     {% if user.is_authenticated %}
-        <a href="{% url 'profile' user.id %}">{{user}}</a>
+        <a href="{% url 'mypage' user.id %}">{{user}}</a>
 
         <!--<a href="{% url 'index' %}">{{user}}</a>-->
         <a href="{% url 'signout' %}">로그아웃</a>
