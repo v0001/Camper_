@@ -16,20 +16,37 @@
     제목 : {{detail_post.title}} <span>- by {{detail_post.author}}</span>
 
 </div>
-
-<div class="dt_desc">
-    {% autoescape off %}
-
-
-    {{detail_post.desc}}
-{% endautoescape %}
-</div>
-
 <div class="dt_create_at">
     {{detail_post.create_at}}
-
 </div>
-
+<div class="dt_desc">
+    {% autoescape off %}
+    {{detail_post.desc}}
+    {% endautoescape %}
+</div>
+<div class="camp_type">
+    캠핑 타입 : {{detail_post.camp_type}}
+</div>
+<div class="position">
+    주소지 : {{ detail_post.address }} <br>
+    위도 : {{detail_post.position_latitude}} <br>
+    경도 : {{detail_post.position_longitude}}
+</div>
+<div class="facility">
+    화장실 : {{ detail_post.facility_toilet }} <br>
+    샤워실 : {{ detail_post.facility_showerroom }} <br>
+    취사장 : {{ detail_post.facility_cookroom }}<br>
+    매점 : {{ detail_post.facility_store }} <br>
+    전기시설 : {{ detail_post.facility_electric }} <br>
+    상하수시설 : {{ detail_post.facility_water_sewage }}<br>
+    화재관련시설 : {{ detail_post.facility_fire }}<br>
+</div>
+<div class="capacity">
+    야영 가능한 사이트 수 : {{ detail_post.capacity }}
+</div>
+<div class="price">
+    가격 : {{ detail_post.price_min }} ~ {{ detail_post.price_max }}
+</div>
 
 {% if detail_post.author == user %}
 <div class="update_btn">
