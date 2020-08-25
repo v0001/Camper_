@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class = "login_page">
-    <br><br><br>
+    <br><br>
     <h1>LOGIN</h1><br>
 
     <form method="POST">
@@ -18,14 +18,13 @@
     </form>
     <div class = "social_login">
         <h2>social login</h2>
-        <br> 
+        
         <a href = "{% provider_login_url 'naver' %}" alt="NAVER LOGIN" title="NAVER LOGIN">
-        <img src = "{% static 'img/social_login/btn_google_signin_light_normal_web.png'%}" alt="NAVER"></a>
-        <br>
+        <img src = "{% static 'img/social_login/Log in with NAVER_Official_Green.PNG'%}" alt="NAVER" title="NAVER LOGIN" width=150 hegiht=50></a>
         <a href = "{% provider_login_url 'kakao' %}">
-        <img src = "accounts\templates\img\social_login\kakao_login_medium_narrow.png" alt="KAKAO" title="KAKAO LOGIN"></a><br>
+        <img src = "{% static 'img/social_login/kakao_login_medium_narrow.png'%}" alt="KAKAO" title="KAKAO LOGIN" width=150 hegiht=50></a>
         <a href = "{% provider_login_url 'google' %}">
-        <img src = "accounts\templates\img\social_login\btn_google_signin_dark_normal_web.png" alt="GOOGLE" title="GOOGLE LOGIN"></a>
+        <img src = "{% static 'img/social_login/btn_google_signin_light_normal_web.png'%}" alt="GOOGLE" title="GOOGLE LOGIN" width=150 hegiht=50></a>
 
     </div>
 </div>

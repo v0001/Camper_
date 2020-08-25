@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from .forms import UserCreationForm, ProfileForm
-from .models import Profile
+from .models import mypage
 from django.contrib.auth.models import User
 
 
@@ -31,7 +31,7 @@ def signup(request):
 
             login(request, user)
 
-            get_profile = Profile.objects.get(id=user.profile.id)
+            get_profile = mypage.objects.get(id=user.mypage.id)
 
             get_profile.nickname = profile_form.cleaned_data['nickname']
             get_profile.location = profile_form.cleaned_data['location']
@@ -54,11 +54,11 @@ def signup(request):
         return render(request, 'registration/signup.html', context)
 
 
-def profile(request, pk):
+def mypage(request, mp):
     context = dict()
-    pro_info = User.objects.get(id=pk)
-    context['pro_info'] = pro_info
-    return render(request, 'profile.html', context)
+    my_info = User.objects.get(id=mp)
+    context['my_info'] = my_info
+    return render(request, 'mypage.html', context)
 
 
 def login(request):
