@@ -169,3 +169,5 @@ SUMMERNOTE_CONFIG = {
         'height': '480',
     }
 }
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

@@ -1,9 +1,12 @@
-from django.urls import path
-from .views import index, create, detail, update, delete, create_comment, comment_delete, like, com_like
+from django.urls import path, include
+from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name="index"),
     path('create/', create, name="create"),
+    path('write/', write, name="write"),
     path('detail/<int:post_id>', detail, name="detail"),
     path('update/<int:post_id>', update, name="update"),
     path('delete/<int:post_id>', delete, name="delete"),
@@ -14,4 +17,8 @@ urlpatterns = [
          name="comment_delete"),
     path('like/<int:post_id>/', like, name="like"),
     path('com_like/<int:com_id>/<int:post_id>', com_like, name='com_like'),
+    path('summernote/', include('django_summernote.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

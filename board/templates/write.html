@@ -7,28 +7,48 @@
 
 {% block content %}
 
-<form class="write_form" method="POST" enctype="multipart/form-data">
-    
+
+<form class="write_form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+<div class="contianer">
     {% csrf_token %}
     
     {% for field in write_form %}
-    {% if field.label == "title" %}
-    {%endif%}
-    <div class="row">
-        <div class="fd_label">
-            {{field.label}} :
+        {% if field.label == "제목" %}
+        <div class="row">
+            <div class="fd_label">{{ field.label }}</div>
+            <div class="field">{{ field }}</div>
         </div>
-        <div class="field">
-            {{field}}
+        {% elif field.label == "내용" %}
+        <div class="row">
+            <div class="fd_label">{{ field.label }}</div>
+            <div class="field">{{ field }}</div>
         </div>
-    </div>
-    {%endfor%}
-    
-    
-   
-    
-<button class="write_btn" type="submit">작성</button>
-</form>
+        {% else %}
+        <div class="row">
+            <a class="fd_label">{{ field.label }} : </a>
+            <a class="field">{{ field }}</a>
+        </div>
+        {% endif %}
+        
+    <!-- {{form.as_p}} summernote -->
+    {% endfor %}
 
+    <!-- {% for field in write_form2 %}
+    <div class="row">
+        <a class="fd_label">{{ field.label }} : </a>
+        <a class="field">{{ field }}</a>
+    </div>
+    {% endfor %}
+
+    {% for field in write_form3 %}
+    <div class="row">
+        <a class="fd_label">{{ field.label }} : </a>
+        <a class="field">{{ field }}</a>
+    </div>
+    {% endfor %} -->
+
+    <button class="write_btn" type="submit">작성</button>
+</form>
+</div>
 
 {%endblock%}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import PostForms, CommentForms
+from .forms import *
 from .models import Post, Comment
 
 from django.contrib.auth import get_user_model
@@ -8,8 +8,10 @@ from django.db.models import Q  #or 조건을 만들기 위한 Q객체
 
 from django.core.paginator import Paginator
 
-User = get_user_model()
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
+User = get_user_model()
 
 # Create your views here.
 def index(request):
@@ -34,8 +36,55 @@ def index(request):
 
     return render(request, 'index.html', context)
 
+def write(request):
+    context=dict()
+    form = PostForms() #summernote
+    # form2 = PostForms2() 
+    # form3 = PostForms3() 
+    context['write_form'] = form #summernote
+    # context['write_form2'] = form2
+    # context['write_form3'] = form3
+    return render(request,'write.html',context)
 
 def create(request):
+    # post=Post()
+    # post.author = User.objects.get(id=request.user.id)
+    # post.title=request.GET.get('title')
+    # post.desc=request.GET.get('content')
+    # post.camp_type=request.GET.get('camp_type')
+    # post.position_latitude=request.GET.get('position_latitude')
+    # post.position_longitude=request.GET.get('position_longitude')
+    # post.address=request.GET.get('address')
+
+    # if request.GET.get('facility_toilet')==True:
+    #     post.facility_toilet=True
+
+    # if request.GET.get('facility_showerroom')==True:
+    #     post.facility_showerroom=True
+
+    # if request.GET.get('facility_cookroom')==True:
+    #     post.facility_cookroom=True
+
+    # if request.GET.get('facility_store')==True:
+    #     post.facility_store=True
+
+    # if request.GET.get('facility_electric')==True:
+    #     post.facility_electric=True
+
+    # if request.GET.get('facility_water_sewage')==True:
+    #     post.facility_water_sewage=True
+
+    # if request.GET.get('facility_fire')==True:
+    #     post.facility_fire=True
+
+    # post.capacity=request.GET.get('capacity')
+    # post.price_min=request.GET.get('price_min')
+    # post.price_max=request.GET.get('price_max')
+    # post.create_at=timezone.now()
+    # post.save()
+
+    # return redirect('index')
+
     context = dict()
 
     if request.method == "POST":
@@ -51,7 +100,7 @@ def create(request):
             context["write_form"] = temp_form
             return render(request, 'write.html', context)
     else:
-        context["write_form"] = PostForms()
+        context["write_form"] = PostForms1()
         return render(request, 'write.html', context)
 
 
