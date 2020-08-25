@@ -17,9 +17,11 @@
     <br><button type="submit">GO!</button><br><br>
     </form>
     <div class = "social_login">
-        <h2>social login</h2>                    
+        <h2>social login</h2>
+        <br> 
         <a href = "{% provider_login_url 'naver' %}" alt="NAVER LOGIN" title="NAVER LOGIN">
-        <img src = "accounts\templates\img\social_login\Log in with NAVER_Official_Green.PNG" alt="NAVER"></a><br>
+        <img src = "{% static 'img/social_login/btn_google_signin_light_normal_web.png'%}" alt="NAVER"></a>
+        <br>
         <a href = "{% provider_login_url 'kakao' %}">
         <img src = "accounts\templates\img\social_login\kakao_login_medium_narrow.png" alt="KAKAO" title="KAKAO LOGIN"></a><br>
         <a href = "{% provider_login_url 'google' %}">
