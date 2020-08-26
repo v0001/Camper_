@@ -16,7 +16,7 @@ class Post(models.Model):
     title = models.CharField("제목", max_length=50)
 
     #백패킹, 차박, 오토캠핑
-    camp_type = models.CharField("캠프 타입", max_length=20,default = '')
+    # camp_type = models.CharField("캠프 타입", max_length=20,default = '')
     camp_type_choice = (
 		('백패킹', 'back'),
         ('차박', 'car'),
