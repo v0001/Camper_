@@ -18,8 +18,9 @@
 <div class="contianer" style = "width : 500px;vertical-align: middle;">
     <form class="write_form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
 
+<div class="contianer" >
 <form class="write_form" style="display:flex; align-items: center; flex-direction: column;" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
-<div class="contianer">
+
     {% csrf_token %}
     
     {% for field in write_form %}
@@ -225,8 +226,12 @@
 
                         searchAddressToCoordinate($('#address').val());
                     });
-
+                    {% if user.mypage.location %}
                     searchAddressToCoordinate("{{user.mypage.location}}");
+                    {%else%}
+                        searchAddressToCoordinate("경남");
+
+                    {% endif %}
                 }
 
                 naver.maps.onJSContentLoaded = initGeocoder;
