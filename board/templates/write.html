@@ -21,39 +21,55 @@
     {% csrf_token %}
     
     {% for field in write_form %}
-        {% if field.label == "제목" %}
+        {% if field.label == "제목" or field.label == "내용" %}
         <div class="row">
             <div class="fd_label">{{ field.label }}</div>
             <div class="field">{{ field }}</div>
         </div>
-        {% elif field.label == "내용" %}
+        {% elif field.label == "캠프 타입" %}
         <div class="row">
-            <div class="fd_label">{{ field.label }}</div>
-            <div class="field">{{ field }}</div>
-        </div>
-        {% else %}
-        <div class="row">
-            <a class="fd_label">{{ field.label }} : </a>
-            <a class="field">{{ field }}</a>
+        <a class="fd_label">{{ field.label }} : </a>
+        <a class="field">{{ field }}</a>
         </div>
         {% endif %}
-        
     <!-- {{form.as_p}} summernote -->
     {% endfor %}
 
-    <!-- {% for field in write_form2 %}
     <div class="row">
-        <a class="fd_label">{{ field.label }} : </a>
-        <a class="field">{{ field }}</a>
-    </div>
+    {% for field in write_form %}
+        {% if field.label == '화장실' or field.label == '샤워실' or field.label == '취사장' %}
+            <a class="fd_label">{{ field.label }} : </a>
+            <a class="field">{{ field }}</a> &emsp;
+        {% endif %}
     {% endfor %}
-
-    {% for field in write_form3 %}
-    <div class="row">
-        <a class="fd_label">{{ field.label }} : </a>
-        <a class="field">{{ field }}</a>
     </div>
-    {% endfor %} -->
+
+    <div class="row">
+        {% for field in write_form %}
+            {% if field.label == '전기시설' or field.label == '상하수시설' or field.label == '화재관련시설' %}
+                <a class="fd_label">{{ field.label }} : </a>
+                <a class="field">{{ field }}</a> &emsp;
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        {% for field in write_form %}
+            {% if field.label == '야영 가능한 사이트 수' %}
+                <a class="fd_label">{{ field.label }} : </a>
+                <a class="field">{{ field }}</a> &emsp;
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        {% for field in write_form %}
+        {% if field.label == '최소이용가격' or field.label == '최대이용가격' %}
+        <a class="fd_label">{{ field.label }} : </a>
+        <a class="field">{{ field }}</a> &emsp;
+        {% endif %}
+        {% endfor %}
+    </div>
 
     <div class="row">
         <div id="map" style="width:100%;height:400px;">
@@ -330,8 +346,23 @@
     <input type="hidden" id="lat" value="" name="click_lat">
     <input type="hidden" id="lng" value="" name="click_lng">
 
+    <div class="row">
+    {% for field in write_form %}
+        {% if field.label == "주소" %}
+            <div class="fd_label">{{ field.label }}</div>
+            <div class="field">{{ field }}</div>
+        {% elif field.label == "위도" %}
+            <div class="fd_label">{{ field.label }}</div>
+            <div class="field">{{ field }}</div>
+        {% elif field.label == "경도" %}
+            <div class="fd_label">{{ field.label }}</div>
+            <div class="field">{{ field }}</div>
+        {% endif %}
+    {% endfor %}
+    </div>
+
     <button class="write_btn" type="submit">작성</button>
 </form>
 </div>
 
-{%endblock%}
+{% endblock %}
