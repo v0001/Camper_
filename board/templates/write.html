@@ -23,12 +23,12 @@
     {% for field in write_form %}
         {% if field.label == "제목" or field.label == "내용" %}
         <div class="row">
-            <div class="fd_label">{{ field.label }}</div>
+            <div class="fd_label">{{ field.label }}</div> <br>
             <div class="field">{{ field }}</div>
         </div>
         {% elif field.label == "캠프 타입" %}
         <div class="row">
-        <a class="fd_label">{{ field.label }} : </a>
+        <a class="fd_label">{{ field.label }}  </a>&nbsp;
         <a class="field">{{ field }}</a>
         </div>
         {% endif %}
@@ -38,7 +38,7 @@
     <div class="row">
     {% for field in write_form %}
         {% if field.label == '화장실' or field.label == '샤워실' or field.label == '취사장' %}
-            <a class="fd_label">{{ field.label }} : </a>
+            <a class="fd_label">{{ field.label }}  </a>&nbsp;
             <a class="field">{{ field }}</a> &emsp;
         {% endif %}
     {% endfor %}
@@ -47,7 +47,7 @@
     <div class="row">
         {% for field in write_form %}
             {% if field.label == '전기시설' or field.label == '상하수시설' or field.label == '화재관련시설' %}
-                <a class="fd_label">{{ field.label }} : </a>
+                <a class="fd_label">{{ field.label }}  </a>&nbsp;
                 <a class="field">{{ field }}</a> &emsp;
             {% endif %}
         {% endfor %}
@@ -56,7 +56,7 @@
     <div class="row">
         {% for field in write_form %}
             {% if field.label == '야영 가능한 사이트 수' %}
-                <a class="fd_label">{{ field.label }} : </a>
+                <a class="fd_label">{{ field.label }}  </a>&nbsp;
                 <a class="field">{{ field }}</a> &emsp;
             {% endif %}
         {% endfor %}
@@ -65,7 +65,7 @@
     <div class="row">
         {% for field in write_form %}
         {% if field.label == '최소이용가격' or field.label == '최대이용가격' %}
-        <a class="fd_label">{{ field.label }} : </a>
+        <a class="fd_label">{{ field.label }}  </a>&nbsp;
         <a class="field">{{ field }}</a> &emsp;
         {% endif %}
         {% endfor %}
@@ -349,13 +349,13 @@
     <div class="row">
     {% for field in write_form %}
         {% if field.label == "주소" %}
-            <div class="fd_label">{{ field.label }}</div>
-            <div class="field">{{ field }}</div>
+            <div class="fd_label">{{ field.label }}</div>&nbsp;
+            <div class="field">{{ field }}</div>&emsp;
         {% elif field.label == "위도" %}
-            <div class="fd_label">{{ field.label }}</div>
-            <div class="field">{{ field }}</div>
+            <div class="fd_label">{{ field.label }}</div>&nbsp;
+            <div class="field">{{ field }}</div>&emsp;
         {% elif field.label == "경도" %}
-            <div class="fd_label">{{ field.label }}</div>
+            <div class="fd_label">{{ field.label }}</div>&nbsp;
             <div class="field">{{ field }}</div>
         {% endif %}
     {% endfor %}

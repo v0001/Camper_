@@ -56,7 +56,8 @@ def write(request):
     # form2 = PostForms2() 
     # form3 = PostForms3() 
 
-    lat, long = 35.154662, 129.059614
+    lat, long = 35.27723713, 129.2343338  #35.154662, 129.059614
+    
     context = {'lat':lat,'long':long}
 
     context['write_form'] = form #summernote
