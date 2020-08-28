@@ -12,7 +12,7 @@ class PostForms(ModelForm):
             'placeholder': '제목을 입력해주세요'
         })
         self.fields['desc'].widget.attrs.update({
-            'class': 'mydesc',
+
             'autocomplete': 'off',
             'placeholder': '내용을 입력해주세요'
         })
