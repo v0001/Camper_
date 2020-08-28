@@ -18,9 +18,9 @@ class Post(models.Model):
     #백패킹, 차박, 오토캠핑
     # camp_type = models.CharField("캠프 타입", max_length=20,default = '')
     camp_type_choice = (
-		('백패킹', 'back'),
-        ('차박', 'car'),
-        ('오토캠핑', 'auto'))
+		('백패킹', '백패킹'),
+        ('차박', '차박'),
+        ('오토캠핑', '오토캠핑'))
     camp_type = models.CharField("캠프 타입", max_length=20, choices=camp_type_choice)
 
     desc = models.TextField("내용")     #사진 포함. photo = models.ImageField("사진", blank=True)

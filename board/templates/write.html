@@ -16,7 +16,7 @@
 {% block content %}
 
 
-<form class="write_form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+<form class="write_form" style="display:flex; align-items: center; flex-direction: column;" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
 <div class="contianer">
     {% csrf_token %}
     
