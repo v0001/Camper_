@@ -51,6 +51,9 @@ a:not([href]):not([tabindex]):hover {
     text-decoration: none
 }
 
+input[type="text"], input[type="password"] {
+    width: 80vw !important;
+}
 a:not([href]):not([tabindex]):focus {
     outline: 0
 }
