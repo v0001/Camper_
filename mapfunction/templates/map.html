@@ -40,12 +40,7 @@
     });
 
 
-    naver.maps.Event.addListener(map, 'click', function (e) {
-        marker.setPosition(e.latlng),
-            map.setCursor('pointer');
-    });
-
-
+    
 
 
     function searchCoordinateToAddress(latlng) {
@@ -93,7 +88,6 @@
                 '</div>'
             ].join('\n'));
 
-            infoWindow.open(map, latlng);
             console.log('address: ', address['jibunAddress']);
             console.log('위도, 경도 ', latlng['_lat'], latlng['_lng']);
 
@@ -155,10 +149,7 @@
             return;
         }
 
-        map.addListener('click', function (e) {
-            searchCoordinateToAddress(e.coord);
-        });
-
+  
         $('#address').on('keydown', function (e) {
             var keyCode = e.which;
 
@@ -173,13 +164,11 @@
             searchAddressToCoordinate($('#address').val());
         });
 
-        searchAddressToCoordinate('부산광역시');
+        searchAddressToCoordinate('{{user.mypage.location}}');
     }
 
     naver.maps.onJSContentLoaded = initGeocoder;
-    naver.maps.Event.once(map, 'init_stylemap', initGeocoder);
-
-
+    
 
     // 지도 인터랙션 옵션
     $("#interaction").on("click", function (e) {
@@ -339,8 +328,6 @@
 
         </script>
 
-        <b>{{i.position_latitude}}, {{i.position_longitude}}, {{i.address}}</b>
-        <br>
 
         {%endfor%}
 

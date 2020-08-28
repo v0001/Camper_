@@ -15,26 +15,22 @@
 
 {% block content %}
 
-<div class="contianer" style = "width : 500px;vertical-align: middle;">
-    <form class="write_form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
-
+<div class="contianer" >
 <form class="write_form" style="display:flex; align-items: center; flex-direction: column;" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
 <div class="contianer">
     {% csrf_token %}
-    
     {% for field in write_form %}
         {% if field.label == "제목" or field.label == "내용" %}
-        <div class="row">
-            <div class="fd_label">{{ fielsd.label }}</div> <br>
-            <div class="field">{{ field }}</div>
-        </div>
+            <div class="row">
+                <div class="fd_label">{{ field.label }}</div> <br>
+                <div class="field">{{ field }}</div>
+            </div>
         {% elif field.label == "캠프 타입" %}
         <div class="row">
         <a class="fd_label">{{ field.label }}  </a>&nbsp;
         <a class="field">{{ field }}</a>
         </div>
         {% endif %}
-    <!-- {{form.as_p}} summernote -->
     {% endfor %}
 
     <div class="row">

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from faker import Faker
 
+from accounts.models import mypage
 from board.models import Post
 
 
@@ -8,11 +9,10 @@ from board.models import Post
 def index(request):
     context = {}
     temp_profile = Faker('ko_KR')
-
- 
+    user = request.user
+    
     context= {'boards': Post.objects.all()}
 
-    
     return render(request, 'map.html',context)
 
 

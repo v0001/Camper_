@@ -1263,7 +1263,7 @@ h3 {
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 324, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_header.scss */
   .header-area .seach_icon {
-    width: 100px;
+    width: 300px;
     right: 85px;
   }
 }
@@ -2572,7 +2572,7 @@ h3 {
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 29, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_where_to_go.scss */
   .where_togo_area .search_wrap .input_field {
-    max-width: 150px;
+    max-width: 300px;
   }
 }
 

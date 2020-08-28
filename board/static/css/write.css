@@ -17,8 +17,10 @@
 
 .fd_label{
     /* font-weight:bold; */
-    font-size:1rem;
+    font-size:1.4rem;
     margin-bottom:1.5rem;
+    margin-top:1.5rem;
+    font-weight: bold;
 }
 .write_form{
     
@@ -29,9 +31,11 @@ margin-top:10rem;
 
 }
 .contianer{
-    margin: 20px;
+    margin: 20px auto;
 }
-
+.field{
+width:100%;
+}
 .write_btn{
     float:right;
     padding:1rem 2rem;
@@ -49,7 +53,7 @@ margin-top:10rem;
 }
 
 .mytitle, iframe{
-    width : 70vw !important; 
+    width : 100% !important; 
 }
 
 
