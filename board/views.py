@@ -55,7 +55,13 @@ def write(request):
     form = PostForms() #summernote
     # form2 = PostForms2() 
     # form3 = PostForms3() 
+
+    lat, long = 35.154662, 129.059614
+    context = {'lat':lat,'long':long}
+
     context['write_form'] = form #summernote
+
+    print(context)
     # context['write_form2'] = form2
     # context['write_form3'] = form3
     return render(request,'write.html',context)
@@ -114,7 +120,13 @@ def create(request):
             context["write_form"] = temp_form
             return render(request, 'write.html', context)
     else:
+
+
+
         context["write_form"] = PostForms1()
+
+
+        
         return render(request, 'write.html', context)
 
 
