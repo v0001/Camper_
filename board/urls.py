@@ -10,14 +10,12 @@ urlpatterns = [
     path('detail/<int:post_id>', detail, name="detail"),
     path('update/<int:post_id>', update, name="update"),
     path('delete/<int:post_id>', delete, name="delete"),
-    path('create_comment/<int:post_id>', create_comment,
-         name="create_comment"),
-    path('comment_delete/<int:post_id>/<int:com_id>',
-         comment_delete,
-         name="comment_delete"),
+    path('create_comment/<int:post_id>', create_comment,name="create_comment"),
+    path('comment_delete/<int:post_id>/<int:com_id>',comment_delete, name="comment_delete"),
     path('like/<int:post_id>/', like, name="like"),
     path('com_like/<int:com_id>/<int:post_id>', com_like, name='com_like'),
     path('summernote/', include('django_summernote.urls')),
+    path('API/', API, name="API"),
 ]
 
 if settings.DEBUG:

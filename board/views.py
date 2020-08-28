@@ -1,19 +1,33 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import Post, Comment
-
 from django.contrib.auth import get_user_model
-
 from django.db.models import Q  #or 조건을 만들기 위한 Q객체
-
 from django.core.paginator import Paginator
-
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+
+import urllib.request
+import json 
+
+
 
 User = get_user_model()
 
 # Create your views here.
+def API(request):
+    # context=dict()
+    # url=##
+    # response = urllib.request.urlopen(url)
+    # json_str = response.read().decode("utf-8")
+
+    # json_object = json.loads(json_str)
+    # json_object
+
+
+    return render(request, 'API.html')
+
+
 def index(request):
     context = dict()
 
@@ -196,3 +210,5 @@ def com_like(request, com_id, post_id):
     print("좋아요를 한 사람들 : ", like_com.like.all())
 
     return redirect('detail', post_id)
+
+
