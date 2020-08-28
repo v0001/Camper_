@@ -46,12 +46,9 @@ loc_choices = (
 class ProfileForm(forms.ModelForm):
 
     location = forms.ChoiceField(choices=loc_choices)
-        # def __init__(self, *args, **kwargs):
-        #     super().__init__(*args, **kwargs)
-        #     self.fields['desc'].widget.attrs.update(
-        #         {'autocomplete': 'off',
-        #         'placeholder':'댓글을 입력해주세요,'
-        #         })
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['location'].label = "관심지역"
     class Meta:
         model = mypage
         fields = ("location", "age")

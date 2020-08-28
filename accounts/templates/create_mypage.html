@@ -7,14 +7,15 @@
 
 {% block content %}
 
-
-<div>
-    <form method="POST">
+<body>
+<div class="mapage" style="display:flex; align-items: center; flex-direction: column;">
+    <form style="width: 400px" method="POST">
     {% csrf_token %}
     {{mypage_form}}
-    <button type="submit">GO!</button><br><br>
+    <button style="width: 364px;" type="submit">GO!</button><br><br>
     </form>
 </div>
+</body>
 {% endblock %}
 
 
