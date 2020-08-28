@@ -6,27 +6,41 @@
 {% block content %}
 <h1>MYPAGE</h1>
     {% csrf_token %}
-    <h2>{{ user.username }}님의 상세정보</h2>
-
+    <h2>▶▷{{ user.username }}님의 상세정보◁◀</h2><br>
     <div class="profile_list">
         <ul>
-            <li>이름  : {{user.mypage.age}}</li><br>
-            <li>성별 : {{my_info.mypage.sex}}</li><br>
-            <li>닉네임 : {{my_info.mypage.nickname}}</li><br>
-            <li>지역 : {{my_info.mypage.location}}</li><br>
-            <li>연령 : {{my_info.mypage.age}}</li><br>
-        </ul>
-    </div>
+            <li>이름  : {{user.mypage.user}}</li><br>
+            <li>관심지역 :
+            {% if user.mypage.location == "37.5609532,126.9789455"%}서울특별시
+                {% elif user.mypage.location == "35.1797957,129.0727983"%}부산광역시
+                {% elif user.mypage.location == "35.8692985,128.5372972"%}대구광역시
+                {% elif user.mypage.location == "37.4568565,126.7029735"%}인천광역시
+                {% elif user.mypage.location == "35.1608052,126.8325019"%}광주광역시
+                {% elif user.mypage.location == "36.350461,127.38263"%}대전광역시
+                {% elif user.mypage.location == "35.5170365,129.126154"%}울산광역시
+                {% elif user.mypage.location == "37.2750552,127.0072561"%}경기도
+                {% elif user.mypage.location == "37.8853984,127.7122663"%}강원도
+                {% elif user.mypage.location == "36.6358136,127.4891451"%}충청북도
+                {% elif user.mypage.location == "36.6588327,126.6706662"%}충청남도
+                {% elif user.mypage.location == "35.8203643,127.1065383"%}전라북도
+                {% elif user.mypage.location == "34.816223,126.4607355"%}전라남도
+                {% elif user.mypage.location == "36.576025,128.5034069"%}경상북도
+                {% elif user.mypage.location == "35.2382949,128.6902093"%}경상남도
+                {% elif user.mypage.location == "33.499597,126.5268766"%}제주시
+            {% endif %} 
+            {% comment %} {{user.mypage.location}} {% endcomment %}
+            </li><br>
+            <li>연령 : {{user.mypage.age}}</li><br>
+    <br>
 
-    
-    
+     <br>
     <!--좋아요 부분 불러오기-->
 
-    <h2>{{ user.username }}님의 좋아요 list</h2>
-    {% for i in pro_info.liked_posts.all %}
+    <h2>------{{ user.username }}님의 좋아요 list------</h2>
+    {% for i in my_info.liked_posts.all %}
         <div class="likedpost">
             <a href = "{% url 'detail' i.id %}">{{i.title}}</a>
         </h2>
-    {%endfor%}
+    {% endfor %}
 
-{%endblock%}
+{% endblock %}

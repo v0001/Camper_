@@ -26,7 +26,7 @@ width:100%;
 margin:0 auto;
 margin-top:10rem;
 }
-.row{
+.contianer{
     margin: 20px;
 }
 
@@ -65,4 +65,4 @@ margin-top:10rem;
 #id_address , .fd_label,  {
 
     display: none;
-} */ */
+} */ 

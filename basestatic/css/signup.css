@@ -14,6 +14,7 @@ h2{
 [type=submit],
 button,
 html [type=button] {
+    margin : 5rem;
     -webkit-appearance: button
 }
 
@@ -50,6 +51,9 @@ a:not([href]):not([tabindex]):hover {
     text-decoration: none
 }
 
+input[type="text"], input[type="password"] {
+    width: 80vw !important;
+}
 a:not([href]):not([tabindex]):focus {
     outline: 0
 }
@@ -61,6 +65,7 @@ html {
     -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: transparent;
+    text-align: center;
 }
 .login_page{
     text-align: center;

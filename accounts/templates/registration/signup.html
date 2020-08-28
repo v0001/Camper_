@@ -15,12 +15,12 @@
     <div class="whole-wrap">
 		<div class="container box_1170">
             <div class="section-top-border">
-				<div class="row">
-					<div class="col-lg-8 col-md-8">
+				<div class="row" style="display: flex; flex-direction: column;">
+					<div class="col-lg-8 col-md-8" style="padding-left: 0;">
 						<h3 class="mb-30">SIGN UP</h3>
 							<div class="mt-10">
 								<input type="text" name="username" placeholder="NAME" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'First Name'" required class="single-input">
+									onblur="this.placeholder = '사용자 이름'" required class="single-input">
 							</div>
 							
 							{% comment %} <div class="mt-10">
@@ -32,7 +32,7 @@
 							</div>
 							<div class="mt-10">
 								<input type="password" name="password1" placeholder="PASSWORD"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required
+									onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" required
 									class="single-input">
 								<ul>
 									<li>다른 개인정보와 비슷한 비밀번호는 사용할 수 없습니다.</li>
@@ -41,11 +41,11 @@
 									<li>비밀번호는 전부 숫자로 할 수 없습니다.</li>
 								</ul>
 							</div>
-
+							<br><br>
 							
 							<div class="mt-10">
 								<input type="password" name="password2" placeholder="PASSWORD CONFIRM"
-									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required
+									onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호 확인'" required
 									class="single-input">
 							</div>
 							

@@ -12,7 +12,7 @@
 
 
     <div class="write" style="float: right;">
-    <a class="black_btn" href="{% url 'write' %}">글쓰기</a>
+        <a style="color:rgb(55, 55, 187)" href="{% url 'write' %}">글쓰기</a>
     </div>
 
     {% if request.GET.q is null %}
@@ -35,9 +35,9 @@
                 <a href="{% url 'detail' one_post.id %}">{{one_post.title}}</a> 
                 
                 {% if user in one_post.like.all %}
-                <!--좋아요 상태--><a href="{% url 'like' one_post.id %}">★</a>
+                <!--좋아요 상태--><a href="{% url 'like' one_post.id %}">💖</a>
                 {%else%}
-                <!--아직 안누름--><a href="{% url 'like' one_post.id %}">☆</a>
+                <!--아직 안누름--><a href="{% url 'like' one_post.id %}">🤍</a>
                 {%endif%}
                 
                 {{one_post.like.all|length }}
