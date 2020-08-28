@@ -100,7 +100,7 @@ def create(request):
         temp_form = PostForms(request.POST)
         if temp_form.is_valid():
             clean_form = temp_form.save(commit=False)
-
+            print(request.user.id)
             clean_form.author = User.objects.get(id=request.user.id)
             clean_form.save()
 
