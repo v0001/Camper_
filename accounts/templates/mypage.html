@@ -6,11 +6,11 @@
 {% block content %}
 <h1>MYPAGE</h1>
     {% csrf_token %}
-    <h2>{% url 'detail' user.id %}님의 상세정보</h2>
+    <h2>{{ user.username }}님의 상세정보</h2>
 
     <div class="profile_list">
         <ul>
-            <li>이름  : {{my_info.mypage.name}}</li><br>
+            <li>이름  : {{user.mypage.age}}</li><br>
             <li>성별 : {{my_info.mypage.sex}}</li><br>
             <li>닉네임 : {{my_info.mypage.nickname}}</li><br>
             <li>지역 : {{my_info.mypage.location}}</li><br>
@@ -22,7 +22,7 @@
     
     <!--좋아요 부분 불러오기-->
 
-    <h2>{% url 'detail' user.id %}님의 좋아요 list</h2>
+    <h2>{{ user.username }}님의 좋아요 list</h2>
     {% for i in pro_info.liked_posts.all %}
         <div class="likedpost">
             <a href = "{% url 'detail' i.id %}">{{i.title}}</a>

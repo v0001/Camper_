@@ -18,10 +18,14 @@
 				<div class="row">
 					<div class="col-lg-8 col-md-8">
 						<h3 class="mb-30">SIGN UP</h3>
-
 							<div class="mt-10">
+								<input type="text" name="username" placeholder="NAME" onfocus="this.placeholder = ''"
+									onblur="this.placeholder = 'First Name'" required class="single-input">
+							</div>
+							
+							{% comment %} <div class="mt-10">
 								<input type="email" name="email" placeholder="EMAIL" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Email address'" required class="single-input">
+									onblur="this.placeholder = 'Email address'" required class="single-input"> {% endcomment %}
 
 								<ul><li>150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</li></ul>
 								
@@ -45,17 +49,14 @@
 									class="single-input">
 							</div>
 							
-							<div class="mt-10">
-								<input type="text" name="username" placeholder="NAME" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'First Name'" required class="single-input">
-							</div>
-							<div class="mt-10">
+							
+							{% comment %} <div class="mt-10">
 								<input type="radio" name="sex" checked="checked" value="man">남자
 								<input type="radio" name="sex" value="woman">여자
-							</div>
+							</div> {% endcomment %}
 
 
-							<div class="mt-10">
+							{% comment %} <div class="mt-10">
 								<input type="text" name="location" placeholder="LOCATION"
 									onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
 									class="single-input">
@@ -69,7 +70,7 @@
 								<input type="text" name="nickname" placeholder="NICKNAME"
 									onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
 									class="single-input">
-							</div>
+							</div> {% endcomment %}
 							<br>
 							<br>
 							<button type="submit" class="btn btn-primary btn-lg" value = '회원가입'>가입</button>
