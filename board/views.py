@@ -7,27 +7,9 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
-import urllib.request
-import json 
-
-
-
 User = get_user_model()
 
 # Create your views here.
-def API(request):
-    # context=dict()
-    # url=##
-    # response = urllib.request.urlopen(url)
-    # json_str = response.read().decode("utf-8")
-
-    # json_object = json.loads(json_str)
-    # json_object
-
-
-    return render(request, 'API.html')
-
-
 def index(request):
     context = dict()
 
