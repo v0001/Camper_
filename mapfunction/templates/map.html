@@ -37,57 +37,38 @@
         {%for i in boards%}
         <script>
 
+            var position= new naver.maps.LatLng('{{i.position_latitude}}', '{{i.position_longitude}}');
+
             var marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng('{{i.position_latitude}}', '{{i.position_longitude}}'),
+                    position: position,
                     map: map
                 });
 
 
             var infowindow = new naver.maps.InfoWindow();
-                
-            var marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng('{{i.position_latitude}}', '{{i.position_longitude}}'),
-                map: map,
-                icon: {
-                    content: '<p style="border:1px solid black; background-color:white; border-radius:15px;"></p><br>캠핑장 : {{i.title}}</p>'
-                }
-            });
-            
-            var infowindow = new naver.maps.InfoWindow();
 
-                function onSuccessGeolocation(position) {
-                    var location = new naver.maps.LatLng('{{i.position_latitude}}', '{{i.position_longitude}}');
-
-                    infowindow.setContent('<div style="padding:20px;">' + 'geolocation.getCurrentPosition() 위치' + '</div>');
-
-                    infowindow.open(map, location);
-                }
-
-                function onErrorGeolocation() {
-                    var center = map.getCenter();
-
-                    infowindow.setContent('<div style="padding:20px;">' +
-                        '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>' + "latitude: " + center.lat() + "<br />longitude: " + center.lng() + '</div>');
-
-                    infowindow.open(map, center);
-                }
-
-                $(window).on("load", function () {
-                    if (navigator.geolocation) {
-                        /**
-                         * navigator.geolocation 은 Chrome 50 버젼 이후로 HTTP 환경에서 사용이 Deprecate 되어 HTTPS 환경에서만 사용 가능 합니다.
-                         * http://localhost 에서는 사용이 가능하며, 테스트 목적으로, Chrome 의 바로가기를 만들어서 아래와 같이 설정하면 접속은 가능합니다.
-                         * chrome.exe --unsafely-treat-insecure-origin-as-secure="http://example.com"
-                         */
-                        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
-                    } else {
-                        var center = map.getCenter();
-                        infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>');
-                        infowindow.open(map, center);
+            var markerOptions = {
+                    position: position,
+                    map: map,
+                    icon: {
+                        url: HOME_PATH + '/img/example/pin_default.png',
+                        size: new naver.maps.Size(22, 35),
+                        origin: new naver.maps.Point(0, 0),
+                        anchor: new naver.maps.Point(11, 35)
+                    },
+                    shape: {
+                        coords: [11, 0, 9, 0, 6, 1, 4, 2, 2, 4,
+                            0, 8, 0, 12, 1, 14, 2, 16, 5, 19,
+                            5, 20, 6, 23, 8, 26, 9, 30, 9, 34,
+                            13, 34, 13, 30, 14, 26, 16, 23, 17, 20,
+                            17, 19, 20, 16, 21, 14, 22, 12, 22, 12,
+                            22, 8, 20, 4, 18, 2, 16, 1, 13, 0],
+                        type: 'poly'
                     }
-                });
-
+                };
             
+            var marker = new naver.maps.Marker(markerOptions);
+
 
 
         </script>
