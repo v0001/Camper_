@@ -9,8 +9,7 @@
     <h2>▶▷{{ user.username }}님의 상세정보◁◀</h2><br>
     <div class="profile_list">
         <ul>
-            <li>이름  : {{user.mypage.age}}</li><br>
-            <li>이름  : {{user.mypage.user}}</li><br>
+            <li>이름  : {{user.mypage.username}}</li><br>
             <li>관심지역 :
             {% if user.mypage.location == "37.5609532,126.9789455"%}서울특별시
                 {% elif user.mypage.location == "35.1797957,129.0727983"%}부산광역시
