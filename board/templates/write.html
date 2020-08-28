@@ -90,6 +90,12 @@
                     map: map
                 });
 
+                var map1 = new naver.maps.Map("map", {
+                        center: new naver.maps.LatLng('{{lat}}', '{{long}}'),
+                        zoom: 15,
+                        mapTypeControl: true
+                    });
+
                 naver.maps.Event.addListener(map, 'click', function (e) {
                     marker.setPosition(e.latlng),
                         map.setCursor('pointer');
@@ -113,15 +119,15 @@
                     }, function (status, response) {
                         if (status === naver.maps.Service.Status.ERROR) {
                             if (!latlng) {
-                                return alert('ReverseGeocode Error, Please check latlng');
+                                return console.log('ReverseGeocode Error, Please check latlng');
                             }
                             if (latlng.toString) {
-                                return alert('ReverseGeocode Error, latlng:' + latlng.toString());
+                                return console.log('ReverseGeocode Error, latlng:' + latlng.toString());
                             }
                             if (latlng.x && latlng.y) {
-                                return alert('ReverseGeocode Error, x:' + latlng.x + ', y:' + latlng.y);
+                                return console.log('ReverseGeocode Error, x:' + latlng.x + ', y:' + latlng.y);
                             }
-                            return alert('ReverseGeocode Error, Please check latlng');
+                            return console.log('ReverseGeocode Error, Please check latlng');
                         }
 
                         var address = response.v2.address,
@@ -147,6 +153,7 @@
 
                         infoWindow.open(map, latlng);
                         console.log('address: ', address['jibunAddress']);
+                        console.log('위도, 경도 ', latlng['_lat'],  latlng['_lng']);
 
                         document.querySelector("#id_position_latitude").value = latlng['_lat'];
                         document.querySelector("#id_position_longitude").value = latlng['_lng'];
@@ -346,7 +353,7 @@
     <input type="hidden" id="lat" value="" name="click_lat">
     <input type="hidden" id="lng" value="" name="click_lng">
 
-    <div class="row">
+    <div class="row" style="display: none;">
     {% for field in write_form %}
         {% if field.label == "주소" %}
             <div class="fd_label">{{ field.label }}</div>

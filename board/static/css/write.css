@@ -47,13 +47,17 @@ margin-top:10rem;
     width:100%;
 }
 
-
-/* form display none
-
-.row, .fd_label, #id_position_latitude  {
-    display: none;
+.mytitle, iframe{
+    width : 70vw !important; 
 }
 
+
+/* /* form display none */
+
+.row > .fd_label > #id_position_latitude  {
+    display: none;
+}
+/* 
 #id_position_longitude, .fd_label {
     display: none;
 }
@@ -62,4 +66,4 @@ margin-top:10rem;
 #id_address , .fd_label,  {
 
     display: none;
-} */
+} */ */
