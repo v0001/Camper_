@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from faker import Faker
 
-from .models import MyPlace
+from board.models import Post
 
 
 # Create your views here.
 def index(request):
     context = {}
-    # temp_profile = Faker('ko_KR')
+    temp_profile = Faker('ko_KR')
 
-    # send_data = temp_profile.profile(sex="F")
+ 
+    context= {'boards': Post.objects.all()}
 
-    # context = {'send_data':send_data}
     
     return render(request, 'map.html',context)
 
