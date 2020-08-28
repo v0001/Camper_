@@ -15,9 +15,9 @@
 
 {% block content %}
 
+<div class="contianer" style = "width : 500px;vertical-align: middle;">
+    <form class="write_form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
 
-<form class="write_form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
-<div class="contianer">
     {% csrf_token %}
     
     {% for field in write_form %}
@@ -90,11 +90,6 @@
                     map: map
                 });
 
-                var map1 = new naver.maps.Map("map", {
-                        center: new naver.maps.LatLng('{{lat}}', '{{long}}'),
-                        zoom: 15,
-                        mapTypeControl: true
-                    });
 
                 naver.maps.Event.addListener(map, 'click', function (e) {
                     marker.setPosition(e.latlng),
@@ -229,7 +224,7 @@
                         searchAddressToCoordinate($('#address').val());
                     });
 
-                    searchAddressToCoordinate('정자동 178-1');
+                    searchAddressToCoordinate("{{user.mypage.location}}");
                 }
 
                 naver.maps.onJSContentLoaded = initGeocoder;

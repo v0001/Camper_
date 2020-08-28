@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import Post, Comment
+from accounts.models import mypage
 from django.contrib.auth import get_user_model
 from django.db.models import Q  #or 조건을 만들기 위한 Q객체
 from django.core.paginator import Paginator
@@ -37,8 +38,10 @@ def write(request):
     form = PostForms() #summernote
     # form2 = PostForms2() 
     # form3 = PostForms3() 
+    user = request.user
+    
 
-    lat, long = 35.27723713, 129.2343338  #35.154662, 129.059614
+    lat, long =  35.154662, 129.059614
     
     context = {'lat':lat,'long':long}
 
