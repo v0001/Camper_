@@ -50,21 +50,21 @@
         
     {%endfor%}
     
-    <div class="text_center" style="display: block; align-items:center; justify-content:center;">
-
-    <div class="pagination" style = 'width:250px; background-color: rgb(240, 195, 195);'>
+    <div class="text_center" style="position:relative; align-items:center; justify-content:center;">
+    <br><br>
+    <div class="pagination" style ='width:400px; background-color: rgb(240, 195, 195); align-items:center; justify-content:center;'>
         <span class="step-links" >
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a href="?page=1">&laquo; first</a>&nbsp;&nbsp;
+                <a href="?page={{ page_obj.previous_page_number }}" style="color: white;">previous</a>
             {% endif %}
-            <a href="?page=3">삼번페이지 바로가기</a>
+            <!-- <a href="?page=3">삼번페이지 바로가기</a> -->
             <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            &nbsp;&nbsp; {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} &nbsp;&nbsp;
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.next_page_number }}" style="color: white;">next</a>&nbsp;&nbsp;
                 <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         </span>

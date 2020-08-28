@@ -35,47 +35,47 @@
 
     <div>
         
-        
-
-
-        {%for i in boards%}
         <script>
-            
 
+        var HOME_PATH = window.HOME_PATH || '.';
+        
+        var bounds = map.getBounds(),
+        southWest = bounds.getSW(),
+        northEast = bounds.getNE(),
+        lngSpan = northEast.lng() - southWest.lng(),
+        latSpan = northEast.lat() - southWest.lat();
+        
+        var markers = [],
+        infoWindows = [];
+        </script>
 
+        {% for i in boards %}
 
-
+        <script>
             var position= new naver.maps.LatLng('{{i.position_latitude}}', '{{i.position_longitude}}');
-
-            var marker = new naver.maps.Marker({
-                    position: position,
-                    map: map
-                });
-
 
             var infowindow = new naver.maps.InfoWindow();
 
-            var markerOptions = {
-                    position: position,
-                    map: map,
-                    icon: {
-                        url: HOME_PATH + '/img/example/pin_default.png',
-                        size: new naver.maps.Size(22, 35),
-                        origin: new naver.maps.Point(0, 0),
-                        anchor: new naver.maps.Point(11, 35)
-                    },
-                    shape: {
-                        coords: [11, 0, 9, 0, 6, 1, 4, 2, 2, 4,
-                            0, 8, 0, 12, 1, 14, 2, 16, 5, 19,
-                            5, 20, 6, 23, 8, 26, 9, 30, 9, 34,
-                            13, 34, 13, 30, 14, 26, 16, 23, 17, 20,
-                            17, 19, 20, 16, 21, 14, 22, 12, 22, 12,
-                            22, 8, 20, 4, 18, 2, 16, 1, 13, 0],
-                        type: 'poly'
-                    }
-                };
+            var marker = new naver.maps.Marker({
+                map: map,
+                position: position,
+                title: '{{i.title}}',
+                icon: {
+                    url: HOME_PATH + '/img/example/sp_pins_spot_v3.png',
+                    size: new naver.maps.Size(24, 37),
+                    anchor: new naver.maps.Point(12, 37),
+                    origin: new naver.maps.Point('{{i.position_latitude}}', '{{i.position_longitude}}')
+                },
+                zIndex: 100
+            });
+
+            var infoWindow = new naver.maps.InfoWindow({
+                content: '<div style="width:300px;text-align:center;padding:10px;"> 캠핑장명 : ' + '<b>' + '<a href="{%url "detail" i.id %}">'+ '{{ i.title }}' + '</a >' + '</b><br></div>'
+            });
+
+            markers.push(marker);
+            infoWindows.push(infoWindow);
             
-            var marker = new naver.maps.Marker(markerOptions);
 
 
 
@@ -85,6 +85,64 @@
         <br>
 
         {%endfor%}
+
+        <script>
+            
+                naver.maps.Event.addListener(map, 'idle', function () {
+                    updateMarkers(map, markers);
+                });
+
+                function updateMarkers(map, markers) {
+
+                    var mapBounds = map.getBounds();
+                    var marker, position;
+
+                    for (var i = 0; i < markers.length; i++) {
+
+                        marker = markers[i]
+                        position = marker.getPosition();
+
+                        if (mapBounds.hasLatLng(position)) {
+                            showMarker(map, marker);
+                        } else {
+                            hideMarker(map, marker);
+                        }
+                    }
+                }
+
+                function showMarker(map, marker) {
+
+                    if (marker.setMap()) return;
+                    marker.setMap(map);
+                }
+
+                function hideMarker(map, marker) {
+
+                    if (!marker.setMap()) return;
+                    marker.setMap(null);
+                }
+
+                // 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+                function getClickHandler(seq) {
+                    return function (e) {
+                        var marker = markers[seq],
+                            infoWindow = infoWindows[seq];
+
+                        if (infoWindow.getMap()) {
+                            infoWindow.close();
+                        } else {
+                            infoWindow.open(map, marker);
+                        }
+                    }
+                }
+
+                for (var i = 0, ii = markers.length; i < ii; i++) {
+                    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+                }
+
+
+        </script>
+
     </div>
     </div>
     </div>

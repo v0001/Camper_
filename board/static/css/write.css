@@ -10,7 +10,6 @@
 }
 .mydesc{
     width:100%;
-
     resize:none;
     padding:10px;
     border: 2px solid #777;
@@ -18,12 +17,12 @@
 
 .fd_label{
     /* font-weight:bold; */
-    font-size:1.6rem;
+    font-size:1rem;
     margin-bottom:1.5rem;
 }
 .write_form{
     
-width:70%;
+width:100%;
 margin:0 auto;
 margin-top:10rem;
 }
@@ -47,13 +46,17 @@ margin-top:10rem;
     width:100%;
 }
 
-
-/* form display none
-
-.row, .fd_label, #id_position_latitude  {
-    display: none;
+.mytitle, iframe{
+    width : 70vw !important; 
 }
 
+
+/* /* form display none */
+
+.row > .fd_label > #id_position_latitude  {
+    display: none;
+}
+/* 
 #id_position_longitude, .fd_label {
     display: none;
 }
@@ -62,4 +65,4 @@ margin-top:10rem;
 #id_address , .fd_label,  {
 
     display: none;
-} */
+} */ */
