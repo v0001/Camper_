@@ -1,55 +1,64 @@
-<!DOCTYPE html>
-<html>
+{% extends 'header.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
-    <script type="text/javascript"
-        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fd2ubf8w22"></script>
+{% load static %}
 
-    <script type="text/javascript"
-        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fd2ubf8w22&submodules=geocoder"></script>
+{% block extrahead %}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="{% static 'css/write.css' %}" type="text/css" />
 
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fd2ubf8w22"></script>
+
+<script type="text/javascript"
+    src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fd2ubf8w22&submodules=geocoder"></script>
+
+{% endblock %}
+
+{% block content %}
 
 <body>
-
-    <h1>간단하게 사상구 AED위치 Map</h1>
-    <div id="map" style="width:100%;height:400px;"></div>
-    <script>
-        var mapOptions = {
-                center: new naver.maps.LatLng(37.3595704, 127.105399),
-                zoom: 10
-            }
-
-        var map = new naver.maps.Map('map', mapOptions);
-
-   //아래는 클릭을 하면 marker가 이동하는 code입니다.
-   //     naver.maps.Event.addListener(map, 'click', function (e) {
-   //                     marker.setPosition(e.latlng);
-   //                 });
-    </script>
-
-    {%for i in myplace%}
-
+    <div class="contianer">
+        <div class="row">
+            <div id="map" style="width:100%;height:400px;">
 
     <script>
-        
 
-
-        var marker = new naver.maps.Marker({
-            position: new naver.maps.LatLng('{{i.latitude}}', '{{i.longitude}}'),
-            map: map,
-            icon: {
-                content: '<p style="border:1px solid black; background-color:white; border-radius:15px;">{{i.place}}<br>-by:{{i.name}}</p>',
-            }
+        var map = new naver.maps.Map("map", {
+            center: new naver.maps.LatLng(35.154662, 129.059614),
+            zoom: 15,
+            mapTypeControl: true
         });
 
+
     </script>
 
-    {%endfor%}
+    <div>
+        {%for i in boards%}
+        <script>
+            var infoWindow = new naver.maps.InfoWindow({
+                anchorSkew: true
+            });
+            var marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng('{{i.position_latitude}}', '{{i.position_longitude}}'),
+                map: map,
+                icon: {
+                    content: '<p style="border:1px solid black; background-color:white; border-radius:15px;"></p><br>캠핑장 : {{i.title}}</p>'
+                }
+            });
+
+
+        </script>
+
+        <b>{{i.position_latitude}}, {{i.position_longitude}}, {{i.address}}</b>
+        <br>
+
+        {%endfor%}
+    </div>
+    </div>
+    </div>
 </body>
 
 </html>
+
+{%endblock%}
