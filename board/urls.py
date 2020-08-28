@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name="index"),
+    path('board/', board, name="board"),
     path('create/', create, name="create"),
     path('write/', write, name="write"),
     path('detail/<int:post_id>', detail, name="detail"),

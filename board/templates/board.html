@@ -1,0 +1,103 @@
+{% extends 'header.html' %}
+{%load static%}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/board.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    {{all_post|length}}개의 게시글
+
+
+    <div class="write" style="float: right;">
+        <a style="color:rgb(55, 55, 187)" href="{% url 'write' %}">글쓰기</a>
+    </div>
+
+    {% if request.GET.q is null %}
+
+    {%else%}
+    <div> 검색어 : {{request.GET.q}} </div>
+    {%endif%}
+
+    <section>
+        <div class="post_row post_row_label">
+            <div class="post_id"> 번호 </div>
+            <div class="post_title"> 제목 </div>
+            <div class="post_date">작성일</div>
+        </div>
+
+        {% for one_post in page_obj %}
+        <div class="post_row">
+            <div class="post_id"> {{one_post.id}} </div>
+            <div class="post_title">
+                <a href="{% url 'detail' one_post.id %}">{{one_post.title}}</a>
+
+                {% if user in one_post.like.all %}
+                <!--좋아요 상태--><a href="{% url 'like' one_post.id %}">💖</a>
+                {%else%}
+                <!--아직 안누름--><a href="{% url 'like' one_post.id %}">🤍</a>
+                {%endif%}
+
+                {{one_post.like.all|length }}
+            </div>
+            <div class="post_date">{{one_post.create_at|date:" m-d "}}</div>
+        </div>
+
+
+
+
+        {%endfor%}
+
+        <div class="text_center" style="position:relative; align-items:center; justify-content:center;">
+            <br><br>
+            <div class="pagination"
+                style='width:400px; background-color: rgb(240, 195, 195); align-items:center; justify-content:center;'>
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>&nbsp;&nbsp;
+                    <a href="?page={{ page_obj.previous_page_number }}" style="color: white;">previous</a>
+                    {% endif %}
+                    <!-- <a href="?page=3">삼번페이지 바로가기</a> -->
+                    <span class="current">
+                        &nbsp;&nbsp; {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} &nbsp;&nbsp;
+                    </span>
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" style="color: white;">next</a>&nbsp;&nbsp;
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <!-- <form style="float: center;">
+
+    <input type="search" name="q" />
+    <input type="submit" value="검색" />
+    </form>
+    <div class="dropdown" style="float: center;">
+    <div class="dropdown_display"> 필터 <span>▼</span></div>
+    <div class="dropdown_itembox">
+        <a href="{% url 'index' %}?filter=오늘">
+            <div class="dropdown_item">오늘</div>
+        </a>
+
+        <div class="dropdown_item">일기</div>
+        <div class="dropdown_item">더위</div>
+
+    </div> -->
+        </div>
+</div>
+</section>
+
+
+
+
+
+
+
+<script type="text/javascript" src="{% static 'js/dropdown.js' %}"></script>
+
+
+</div>
+{%endblock%}

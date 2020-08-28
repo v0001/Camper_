@@ -11,6 +11,9 @@ User = get_user_model()
 
 # Create your views here.
 def index(request):
+    return render(request, 'index.html')
+
+def board(request):
     context = dict()
 
     search_q = request.GET.get('q', '')
@@ -30,7 +33,7 @@ def index(request):
     context['all_post'] = filter_post
     context['page_obj'] = page_obj
 
-    return render(request, 'index.html', context)
+    return render(request, 'board.html', context)
 
 def write(request):
     context=dict()
