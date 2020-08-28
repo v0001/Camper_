@@ -2,154 +2,210 @@
 {%load static%}
 
 {% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/detail.css' %}" type="text/css" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" type="text/css" />
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fd2ubf8w22"></script>
+
+<script type="text/javascript"
+    src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fd2ubf8w22&submodules=geocoder"></script>
+
 {% endblock %}
 
 {% block content %}
 
-<div class="container">
+<div class="container" >
 
+    <div class="dt_title">
+        <div class="blog_details">
+            <h2>{{detail_post.title}}</h2>
+            <ul class="blog-info-link mt-3 mb-4">
+                <li><i class="fa fa-user"></i> 글쓴이 : <a style="font-weight:bold;">{{detail_post.author}}</a></li>
+                <li><i class="fa fa-comments"></i> {{detail_post.create_at}}</li>
+                    {% if detail_post.author == user %}
+                    <li>
+                        <a href="{% url 'update' detail_post.id %}">수정</a> |
+                        <a href="{% url 'delete' detail_post.id%}">삭제</a>
+                    </li>
+                    {% endif %}
+            </ul>
+            
+        </div>
+    </div>
 
-<section>
+    <div class="blog_details">
     
-<div class="dt_title">
-    제목 {{detail_post.title}} <span>- by {{detail_post.author}}</span>
+        <div class="row switch-wrap d-flex justify-content-between">
+            <p class="col" style="font-size:130%;"> 
+                {% autoescape off %}
+                {{detail_post.desc}}
+                {% endautoescape %}
 
-</div>
-<div class="dt_create_at">
-    {{detail_post.create_at}}
-</div>
-<div class="dt_desc">
-    {% autoescape off %}
-    {{detail_post.desc}}
-    {% endautoescape %}
-</div>
-<div class="camp_type">
-    캠핑 타입 : {{detail_post.camp_type}}
+            </p>
+        </div>
+        <div class="row switch-wrap d-flex justify-content-between">
+            <p class="col" style="font-size:130%;">
+                주소지 : {{ detail_post.address }}
+            </p>
+        </div>
+    </div>
+
+
+
+
+<div id="map" style="width:100%;height:400px;align-items: center">
+    <script>
+        var map = new naver.maps.Map("map", {
+            center: new naver.maps.LatLng('{{detail_post.position_latitude}}', '{{detail_post.position_longitude}}'),
+            zoom: 15,
+            mapTypeControl: true
+        });
+
+        var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng('{{detail_post.position_latitude}}', '{{detail_post.position_longitude}}'),
+            map: map
+        });
+
+        var infoWindow = new naver.maps.InfoWindow({
+                anchorSkew: true
+            });
+
+        infoWindow.setContent([
+                '<div style="padding:10px;min-width:200px;line-height:150%;">'+
+                '<h4 style="margin-top:5px;">검색 좌표</h4><br />' +
+                '<p>주소 : '+ '{{ detail_post.address }}'+'</p>'+
+                '</div>'
+            ].join('\n'));
+        infoWindow.open(map, latlng);
+    </script>
 </div>
 
-<div class="facility">
-    <div class="switch-wrap d-flex justify-content-between">
-        <p style="font-size:160%;"> 화장실 있음 </p>
-        <div class="primary-switch">
+
+<div class="blog_details">
+
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class="col" style="font-size:130%; "> 캠핑 타입 :   <a style = "font-weight: bold; margin-left: 20px" >{{detail_post.camp_type}}</a></p>
+    </div>
+
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class="col" style="font-size:130%; "> 야영 가능한 사이트 수 :   <a style="font-weight: bold; margin-left: 20px">{{ detail_post.capacity }}</a></p>
+    </div>
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class="col" style="font-size:130%; "> 가격 :   <a style="font-weight: bold; margin-left: 20px">{{ detail_post.price_min }} ~ {{ detail_post.price_max }}</a></p>
+    </div>
+    
+
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class = "col" style="font-size:130%;">화장실 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
             <input type="checkbox" id="default-switch" {% if detail_post.facility_toilet %} checked disabled {% endif %}>
             <label for="default-switch"></label>
         </div>
     
-        <p style="font-size:160%;"> 샤워실 있음 </p>
-        <div class="primary-switch">
+        <p  class = "col" style="font-size:130%;">샤워실 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
             <input type="checkbox" id="default-switch" {% if detail_post.facility_showerroom %} checked disabled {% endif %}>
             <label for="default-switch"></label>
         </div>
     
     </div>
 
-    <div class="switch-wrap d-flex justify-content-between">
-        <p style="font-size:160%;"> 취사장 있음 </p>
-        <div class="primary-switch">
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class = "col" style="font-size:130%;">취사장 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
             <input type="checkbox" id="default-switch" {% if detail_post.facility_cookroom %} checked disabled {% endif %}>
             <label for="default-switch"></label>
         </div>
     
-        <p style="font-size:160%;"> 매점 있음 </p>
-        <div class="primary-switch">
+        <p class = "col" style="font-size:130%;">매점 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
             <input type="checkbox" id="default-switch" {% if detail_post.facility_store %} checked disabled {% endif %}>
             <label for="default-switch"></label>
         </div>
     
     </div>
 
-    <div class="switch-wrap d-flex justify-content-between">
-        <p style="font-size:160%;"> 전기시설 있음 </p>
-        <div class="primary-switch">
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class = "col" style="font-size:130%;"> 전기시설 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
             <input type="checkbox" id="default-switch" {% if detail_post.facility_electric %} checked disabled {% endif %}>
             <label for="default-switch"></label>
         </div>
     
-        <p style="font-size:160%;"> 상하수시설 있음 </p>
-        <div class="primary-switch">
+        <p class = "col" style="font-size:130%;"> 상하수시설 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
             <input type="checkbox" id="default-switch" {% if detail_post.facility_water_sewage %} checked disabled {% endif %}>
             <label for="default-switch"></label>
         </div>
     
     </div>
 
-
-    화재관련시설 : {{ detail_post.facility_fire }}<br>
-</div>
-<div class="capacity">
-    야영 가능한 사이트 수 : {{ detail_post.capacity }}
-</div>
-<div class="price">
-    가격 : {{ detail_post.price_min }} ~ {{ detail_post.price_max }}
-</div>
-
-
-
-<div class="position">
-    주소지 : {{ detail_post.address }} <br>
-</div>
-
-{% if detail_post.author == user %}
-<div class="update_btn">
-    <a href="{% url 'update' detail_post.id %}">수정</a> |
-<a href="{% url 'delete' detail_post.id%}">삭제</a>
-</div>
-{% endif %}
-
-</section>
-
-<form method="post" action="{% url 'create_comment' detail_post.id  %}">
-    {% csrf_token %}
-    <div class="com_label">{{comment_form.desc.label}}</div>
-    <div class="com_input_container">
-        {{comment_form.desc}}
-    
-        <input class="com_submit" type="submit" value="작성"/>
-    
+    <div class="row switch-wrap d-flex justify-content-between">
+        <p class = "col" style="font-size:130%;"> 화재관련시설 있음 </p>
+        <div class="primary-switch" style = "margin-right : 100px ">
+            <input type="checkbox" id="default-switch" {% if detail_post.facility_fire %} checked disabled {% endif %}>
+            <label for="default-switch"></label>
+        </div>
+        <p class = "col" style="font-size:130%;">  </p>
+        <div class="primary-switch" style = "margin-right : 100px; color :white">
+        </div>
     </div>
-</form>
 
-<!--<form method="post" action="{% url 'create_comment' detail_post.id  %}">-->
-<!--    {% csrf_token %}-->
-<!--    {% for form in comment_form %}-->
-    
-<!--        {% if form.label != "Post" %}-->
-        
-<!--            {{form.label}}: {{form}}<br>-->
-            
-<!--        {%endif%}-->
-        
-<!--    {%endfor%}-->
-<!--    <input type='hidden' name="post" value={{detail_post.id}}>-->
-    <!--{{comment_form.as_p}}-->
-<!--    <input type="submit" value="작성"/>-->
-<!--</form>-->
 
-{% for com in comment_all%}
-<div class="com_row">
-       <span class="com_author">{{com.author}}
-       
-        {% if com.author == user %}
-            <a href="{% url 'comment_delete' detail_post.id com.id %}">삭제</a>
-        {%endif%}
-        
-        </span> 
 
-       <div class="com_desc">{{com}} 
-      
-        </div> 
-       
-        
-           
+
 
 </div>
-    
-   
-    
-   
-    <br> 
+
+
+
+
+
+
+<div class="comments-area">
+    <h4>Comments</h4>
+    {% for com in comment_all%}
+    <div class="comment-list">
+        <div class="single-comment justify-content-between d-flex">
+            <div class="user justify-content-between d-flex">
+                <div class="desc">
+                    <p class="comment">
+                        {{com}}
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <h5>
+                                {{com.author}}
+                            </h5>
+                            <p class="date">{{com.create_at}}</p>
+                        </div>
+                        <div class="reply-btn">
+                            <a href="{% url 'comment_delete' detail_post.id com.id %}" class="btn-reply text-uppercase">삭제</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {%endfor%}
+
+<div class="comments-area">
+    <h4>Leave Comments</h4>
+    <form method="post" action="{% url 'create_comment' detail_post.id  %}">
+        {% csrf_token %}
+    
+        <div class="com_input_container " style="width:100%;">
+            {{comment_form.desc}}
+    
+            <input class="com_submit" type="submit" value="작성" />
+    
+        </div>
+    </form>
+
+
+</div>
 
 
 

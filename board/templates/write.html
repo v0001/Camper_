@@ -99,8 +99,6 @@
                 naver.maps.Event.addListener(map, 'click', function (e) {
                     marker.setPosition(e.latlng),
                         map.setCursor('pointer');
-
-
                 });
 
 
@@ -137,7 +135,7 @@
                             htmlAddresses.push('[지번 주소] ' + address.jibunAddress);
                         }
                         if (address.jibunAddress !== '') {
-                            htmlAddresses.push('[경도 위도] ' + address.latlng);
+                            htmlAddresses.push('[경도 위도] ' +  latlng['_lat'], latlng['_lng']);
                         }
 
                         if (address.roadAddress !== '') {
