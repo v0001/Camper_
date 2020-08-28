@@ -15,7 +15,6 @@ urlpatterns = [
     path('like/<int:post_id>/', like, name="like"),
     path('com_like/<int:com_id>/<int:post_id>', com_like, name='com_like'),
     path('summernote/', include('django_summernote.urls')),
-    path('API/', API, name="API"),
 ]
 
 if settings.DEBUG:
