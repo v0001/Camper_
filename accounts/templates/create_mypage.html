@@ -1,18 +1,5 @@
-{% extends 'header.html' %}
-{% load socialaccount %}
-{% load static %}
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css" />
-{% endblock %}
-
-{% block content %}
-
-
-<div>
-    <form method="POST">
-    {% csrf_token %}
-    {{mypage_form}}
-    <button type="submit">GO!</button><br><br>
-    </form>
-</div>
-{% endblock %}
+<form method="POST">
+{% csrf_token %}
+{{mypage_form}}
+<input type ="submit" value="확인">
+</form>

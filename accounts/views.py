@@ -58,7 +58,7 @@ def signup(request):
         return render(request, 'registration/signup.html', context)
 
 
-def render_mypage(request,mp):
+def render_mypage(request, mp):
     context = dict()
     my_info = User.objects.get(id=mp)
     context['my_info'] = my_info
@@ -74,6 +74,9 @@ def create_mypage(request):
     if request.method == "POST":
         saved_form = ProfileForm(request.POST,instance=mypage.objects.get(user=request.user))
         if saved_form.is_valid():
+            # temp_form = saved_form(commit=False)
+            # temp_form.user = request.user
+            # temp_form.save()
             saved_form.save()
             return redirect('index')
     mypage_form = ProfileForm()
